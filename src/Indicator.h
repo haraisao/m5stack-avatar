@@ -1,9 +1,8 @@
-// Copyright (c) Shinya Ishikawa. All rights reserved.
+// Copyright (c) Isao Hara. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full
 // license information.
 
-#ifndef EFFECT_H_
-#define EFFECT_H_
+#pragma once
 #define LGFX_USE_V1
 #include <M5GFX.h>
 #include "DrawContext.h"
@@ -56,4 +55,3 @@ class Indicator final : public Drawable {
 
 }  // namespace m5avatar
 
-#endif  // EFFECT_H_
