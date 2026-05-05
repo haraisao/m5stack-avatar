@@ -42,6 +42,7 @@ class DrawContext {
   int32_t batteryLevel = 0;
   const lgfx::IFont* speechFont =
       nullptr;  // = &fonts::lgfxJapanGothicP_16; //  = &fonts::efontCN_10;
+  String infoText;
 
  public:
   DrawContext() = delete;
@@ -69,7 +70,9 @@ class DrawContext {
   float getScale() const;
   float getRotation() const;
   ColorPalette* const getColorPalette() const;
-  String getspeechText() const;
+  String getSpeechText() const;
+  String getInfoText() const;
+  void setInfoText(String info) { infoText = info; }
   int getColorDepth() const;
   BatteryIconStatus getBatteryIconStatus() const;
   int32_t getBatteryLevel() const;

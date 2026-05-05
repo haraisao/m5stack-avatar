@@ -11,10 +11,13 @@
 
 namespace m5avatar {
 class Drawable {
- public:
-  virtual ~Drawable() = default;
-  virtual void draw(M5Canvas *spi, BoundingRect rect,
+  public:
+    BoundingRect *rect;
+  public:
+    virtual ~Drawable(){ delete rect;};
+    virtual void draw(M5Canvas *spi, BoundingRect rect,
                     DrawContext *drawContext) = 0;
+    //virtual void draw(M5Canvas *spi, DrawContext *drawContext) = 0;
   // virtual void draw(TFT_eSPI *spi, DrawContext *drawContext) = 0;
 };
 

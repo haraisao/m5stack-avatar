@@ -57,7 +57,9 @@ float DrawContext::getRotation() const { return rotation; }
 
 float DrawContext::getScale() const { return scale; }
 
-String DrawContext::getspeechText() const { return speechText; }
+String DrawContext::getSpeechText() const { return speechText; }
+
+String DrawContext::getInfoText() const { return infoText; }
 
 ColorPalette* const DrawContext::getColorPalette() const { return palette; }
 

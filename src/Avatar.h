@@ -58,6 +58,7 @@ class Avatar {
   BatteryIconStatus batteryIconStatus;
   int32_t batteryLevel;
   const lgfx::IFont *speechFont;
+  String infoText;
 
  public:
   Avatar();
@@ -107,6 +108,7 @@ class Avatar {
   void setMouthOpenRatio(float ratio);
   void setSpeechText(const char *speechText);
   void setSpeechFont(const lgfx::IFont *speechFont);
+  void setInfoText(const char *infoText, uint16_t color=TFT_WHITE, uint16_t bgColor=TFT_BLACK);
   void setRotation(float radian);
   void setPosition(int top, int left);
   void setScale(float scale);

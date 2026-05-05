@@ -9,8 +9,8 @@
 namespace m5avatar {
 class BoundingRect {
  private:
-  int16_t top;
-  int16_t left;
+  int16_t top; // y
+  int16_t left; // x
   int16_t width;
   int16_t height;
 
@@ -30,6 +30,7 @@ class BoundingRect {
   int16_t getWidth();
   int16_t getHeight();
   void setPosition(int16_t top, int16_t left);
+  void shift(int16_t dx, int16_t dy);
   void setSize(int16_t width, int16_t height);
 };
 }  // namespace m5avatar

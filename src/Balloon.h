@@ -30,7 +30,8 @@ class Balloon final : public Drawable {
   Balloon &operator=(const Balloon &other) = default;
   void draw(M5Canvas *spi, BoundingRect rect,
             DrawContext *drawContext) override {
-    String text = drawContext->getspeechText();
+    String text = drawContext->getSpeechText();
+    text.trim();
     const lgfx::IFont *font = drawContext->getSpeechFont();
     if (text.length() == 0) {
       return;
@@ -38,13 +39,15 @@ class Balloon final : public Drawable {
     ColorPalette* cp = drawContext->getColorPalette();
     uint16_t primaryColor = cp->get(COLOR_BALLOON_FOREGROUND);
     uint16_t backgroundColor = cp->get(COLOR_BALLOON_BACKGROUND);
-    M5.Lcd.setTextSize(TEXT_SIZE);
-    M5.Lcd.setTextDatum(MC_DATUM);
+    //M5.Lcd.setTextSize(TEXT_SIZE);
+    //M5.Lcd.setTextDatum(MC_DATUM);
     spi->setTextSize(TEXT_SIZE);
     spi->setTextColor(primaryColor, backgroundColor);
     spi->setTextDatum(MC_DATUM);
-    M5.Lcd.setFont(font);
-    int textWidth = M5.Lcd.textWidth(text.c_str());
+    spi->setFont(font);
+    //M5.Lcd.setFont(font);
+    //int textWidth = M5.Lcd.textWidth(text.c_str());
+    int textWidth = spi->textWidth(text.c_str());
     int textHeight = TEXT_HEIGHT * TEXT_SIZE;
     spi->fillEllipse(cx - 20, cy,textWidth + 2, textHeight * 2 + 2,
                      primaryColor);

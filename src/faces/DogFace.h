@@ -87,11 +87,11 @@ class DogMouth : public Drawable {
 class DogFace : public Face {
    public:
     DogFace()
-        : Face(new DogMouth(), new BoundingRect(168, 163), new DogEye(),
-               new BoundingRect(103, 80), new DogEye(),
-               new BoundingRect(106, 240), new Eyeblow(15, 2, false),
-               new BoundingRect(67, 96), new Eyeblow(15, 2, true),
-               new BoundingRect(72, 230)) {}
+        : Face(new DogMouth(), new BoundingRect(163, 168),
+               new DogEye(), new BoundingRect(80, 103),
+               new DogEye(), new BoundingRect(240, 106),
+               new Eyeblow(15, 2, false), new BoundingRect(96, 67),
+               new Eyeblow(15, 2, true), new BoundingRect(230, 72)) {}
 };
 
 }  // namespace m5avatar

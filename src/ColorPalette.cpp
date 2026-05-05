@@ -10,7 +10,10 @@ ColorPalette::ColorPalette()
              {COLOR_SECONDARY, TFT_BLACK},
              {COLOR_BACKGROUND, TFT_BLACK},
              {COLOR_BALLOON_FOREGROUND, TFT_BLACK},
-             {COLOR_BALLOON_BACKGROUND, TFT_WHITE}} {}
+             {COLOR_BALLOON_BACKGROUND, TFT_WHITE},
+             {COLOR_INFO_FOREGROUND, TFT_WHITE},
+             {COLOR_INFO_BACKGROUND, TFT_BLACK},
+            } {}
 
 uint16_t ColorPalette::get(const char* key) const {
   auto itr = colors.find(key);

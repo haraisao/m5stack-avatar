@@ -46,12 +46,11 @@ class BMPFace : public Face
 {
 public:
   BMPFace()
-      : Face(new Mouth(50, 90, 4, 60), new BoundingRect(148, 163),
-             new BMPEye(),
-             new BoundingRect(103, 80), new BMPEye(),
-             new BoundingRect(106, 240), new Eyeblow(15, 2, false),
-             new BoundingRect(67, 96), new Eyeblow(15, 2, true),
-             new BoundingRect(72, 230)) {}
+      : Face(new Mouth(50, 90, 4, 60), new BoundingRect(163, 148),
+             new BMPEye(), new BoundingRect(80, 103),
+             new BMPEye(), new BoundingRect(240, 106),
+             new Eyeblow(15, 2, false), new BoundingRect(96, 67),
+             new Eyeblow(15, 2, true), new BoundingRect(230, 72)) {}
 };
 
 } // namespace m5avatar

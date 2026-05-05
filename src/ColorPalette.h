@@ -12,6 +12,8 @@
 #define COLOR_BACKGROUND "background"
 #define COLOR_BALLOON_FOREGROUND "balloon_f"
 #define COLOR_BALLOON_BACKGROUND "balloon_b"
+#define COLOR_INFO_FOREGROUND "info_f"
+#define COLOR_INFO_BACKGROUND "info_b"
 
 namespace m5avatar {
 // enum class ColorType

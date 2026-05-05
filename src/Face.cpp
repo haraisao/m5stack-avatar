@@ -12,22 +12,23 @@ namespace m5avatar {
 BoundingRect br;
 
 Face::Face()
-    : Face(new Mouth(50, 90, 4, 60), new BoundingRect(148, 163),
-           new Eye(8, false), new BoundingRect(93, 90), new Eye(8, true),
-           new BoundingRect(96, 230), new Eyeblow(32, 0, false),
-           new BoundingRect(67, 96), new Eyeblow(32, 0, true),
-           new BoundingRect(72, 230)) {}
+    : Face(new Mouth(50, 90, 4, 60), new BoundingRect(163, 148),
+           new Eye(8, RIGHT_SIDE), new BoundingRect(90, 93),
+           new Eye(8, LEFT_SIDE),new BoundingRect(230, 96),
+           new Eyeblow(32, 0, RIGHT_SIDE), new BoundingRect(96, 67),
+           new Eyeblow(32, 0, LEFT_SIDE), new BoundingRect(230, 72)) {}
 
-Face::Face(Drawable *mouth, Drawable *eyeR, Drawable *eyeL, Drawable *eyeblowR,
-           Drawable *eyeblowL)
-    : Face(mouth, new BoundingRect(148, 163), eyeR, new BoundingRect(93, 90),
-           eyeL, new BoundingRect(96, 230), eyeblowR, new BoundingRect(67, 96),
-           eyeblowL, new BoundingRect(72, 230)) {}
+Face::Face(Drawable *mouth, Drawable *eyeR, Drawable *eyeL,
+           Drawable *eyeblowR, Drawable *eyeblowL)
+    : Face(mouth, new BoundingRect(163, 148),
+           eyeR, new BoundingRect(90, 93), eyeL, new BoundingRect(230, 96),
+           eyeblowR, new BoundingRect(96, 67), eyeblowL, new BoundingRect(230, 72)) {}
 
-Face::Face(Drawable *mouth, BoundingRect *mouthPos, Drawable *eyeR,
-           BoundingRect *eyeRPos, Drawable *eyeL, BoundingRect *eyeLPos,
-           Drawable *eyeblowR, BoundingRect *eyeblowRPos, Drawable *eyeblowL,
-           BoundingRect *eyeblowLPos)
+Face::Face(Drawable *mouth, BoundingRect *mouthPos,
+           Drawable *eyeR, BoundingRect *eyeRPos,
+           Drawable *eyeL, BoundingRect *eyeLPos,
+           Drawable *eyeblowR, BoundingRect *eyeblowRPos,
+           Drawable *eyeblowL, BoundingRect *eyeblowLPos)
     : Face(mouth, mouthPos, eyeR, eyeRPos, eyeL, eyeLPos, eyeblowR,
            eyeblowRPos, eyeblowL, eyeblowLPos,
            new BoundingRect(0, 0, 320, 240),
@@ -50,7 +51,10 @@ Face::Face(Drawable *mouth, BoundingRect *mouthPos, Drawable *eyeR,
       eyeblowLPos{eyeblowLPos},
       boundingRect{boundingRect},
       sprite{spr},
-      tmpSprite{tmpSpr} {}
+      tmpSprite{tmpSpr},
+      b{ new Balloon()},
+      h{ new Effect() },
+      ind{ new Indicator()} {}
 
 Face::~Face() {
   delete mouth;
@@ -68,6 +72,7 @@ Face::~Face() {
   delete b;
   delete h;
   delete battery;
+  delete ind;
 }
 
 void Face::setMouth(Drawable *mouth) { this->mouth = mouth; }
@@ -99,30 +104,32 @@ void Face::draw(DrawContext *ctx) {
 
   // TODO(meganetaaan): unify drawing process of each parts
   BoundingRect rect = *mouthPos;
-  rect.setPosition(rect.getTop() + breath * 3, rect.getLeft());
+  rect.shift(0, breath * 3);
   // copy context to each draw function
   mouth->draw(sprite, rect, ctx);
 
   rect = *eyeRPos;
-  rect.setPosition(rect.getTop() + breath * 3, rect.getLeft());
+  rect.shift(0, breath * 3);
   eyeR->draw(sprite, rect, ctx);
 
   rect = *eyeLPos;
-  rect.setPosition(rect.getTop() + breath * 3, rect.getLeft());
+  rect.shift(0, breath * 3);
   eyeL->draw(sprite, rect, ctx);
 
   rect = *eyeblowRPos;
-  rect.setPosition(rect.getTop() + breath * 3, rect.getLeft());
+  rect.shift(0, breath * 3);
   eyeblowR->draw(sprite, rect, ctx);
 
   rect = *eyeblowLPos;
-  rect.setPosition(rect.getTop() + breath * 3, rect.getLeft());
+  rect.shift(0, breath * 3);
   eyeblowL->draw(sprite, rect, ctx);
 
   // TODO(meganetaaan): make balloons and effects selectable
-  b->draw(sprite, br, ctx);
+
   h->draw(sprite, br, ctx);
+  ind->draw(sprite, br, ctx);
   battery->draw(sprite, br, ctx);
+  b->draw(sprite, br, ctx);
   // drawAccessory(sprite, position, ctx);
 
   // TODO(meganetaaan): rethink responsibility for transform function

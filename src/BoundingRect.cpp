@@ -5,12 +5,12 @@
 #include "BoundingRect.h"
 
 namespace m5avatar {
-BoundingRect::BoundingRect(int16_t top, int16_t left)
-    : BoundingRect(top, left, 0, 0) {}
+BoundingRect::BoundingRect(int16_t x, int16_t y)
+    : BoundingRect(x, y, 0, 0) {}
 
-BoundingRect::BoundingRect(int16_t top, int16_t left, int16_t width,
+BoundingRect::BoundingRect(int16_t x, int16_t y, int16_t width,
                            int16_t height)
-    : top{top}, left{left}, width{width}, height{height} {}
+    : top{y}, left{x}, width{width}, height{height} {}
 
 int16_t BoundingRect::getTop() { return top; }
 
@@ -28,9 +28,14 @@ int16_t BoundingRect::getWidth() { return width; }
 
 int16_t BoundingRect::getHeight() { return height; }
 
-void BoundingRect::setPosition(int16_t top, int16_t left) {
-  this->top = top;
-  this->left = left;
+void BoundingRect::setPosition(int16_t x, int16_t y) {
+  this->top = y;
+  this->left = x;
+}
+
+void BoundingRect::shift(int16_t dx, int16_t dy) {
+  this->top += dy;
+  this->left += dx;
 }
 
 void BoundingRect::setSize(int16_t width, int16_t height) {

@@ -12,6 +12,10 @@
 #include "Mouth.h"
 #include "Effect.h"
 #include "BatteryIcon.h"
+#include "Indicator.h"
+
+#define LEFT_SIDE   true
+#define RIGHT_SIDE  false
 
 namespace m5avatar {
 
@@ -33,6 +37,7 @@ class Face {
   Balloon *b;
   Effect *h;
   BatteryIcon *battery;
+  Indicator *ind;
 
  public:
   // constructor
