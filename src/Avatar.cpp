@@ -44,7 +44,7 @@ TaskResult_t drawLoop(void *args) {
     if (avatar->isDrawing()) {
       avatar->draw();
     }
-    TaskDelay(10);
+    TaskDelay(40);
   }
   TaskResult();
 }
