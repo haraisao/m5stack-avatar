@@ -71,7 +71,7 @@ class Balloon final : public Drawable {
 
     int xpos = 320+textWidth/2;;
     if(textWidth > 300){
-      xpos -= std::round(duration/10);
+      xpos -= std::round(duration/5);
       if (xpos < -textWidth/2){
         start_tm = millis();
       }
