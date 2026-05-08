@@ -22,6 +22,9 @@ const int cy = 220;
 
 namespace m5avatar {
 class Balloon final : public Drawable {
+ private:
+   int start_tm = -1;
+   String current="";
  public:
   // constructor
   Balloon() = default;
@@ -33,9 +36,17 @@ class Balloon final : public Drawable {
     String text = drawContext->getSpeechText();
     text.trim();
     const lgfx::IFont *font = drawContext->getSpeechFont();
+
+    if(current != text){
+      start_tm = millis();
+      current = text;
+    }
+
     if (text.length() == 0) {
       return;
     }
+
+    int duration = millis() - start_tm;
     ColorPalette* cp = drawContext->getColorPalette();
     uint16_t primaryColor = cp->get(COLOR_BALLOON_FOREGROUND);
     uint16_t backgroundColor = cp->get(COLOR_BALLOON_BACKGROUND);
@@ -57,7 +68,17 @@ class Balloon final : public Drawable {
                      backgroundColor);
     spi->fillTriangle(cx - 60, cy - 40, cx - 10, cy - 10, cx - 40, cy - 10,
                       backgroundColor);
-    spi->drawString(text.c_str(), cx - textWidth / 6 - 15, cy, font);  // Continue printing from new x position
+
+    int xpos = 320+textWidth/2;;
+    if(textWidth > 300){
+      xpos -= std::round(duration/10);
+      if (xpos < -textWidth/2){
+        start_tm = millis();
+      }
+    }else{
+      xpos = cx - textWidth / 6 - 15;
+    }
+    spi->drawString(text.c_str(), xpos, cy, font);  // Continue printing from new x position
   }
 };
 
