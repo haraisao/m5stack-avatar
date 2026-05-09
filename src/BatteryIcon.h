@@ -17,7 +17,13 @@ class BatteryIcon final : public Drawable {
     spi->drawRect(x, y + 5, 5, 5, fgcolor);
     spi->drawRect(x + 5, y, 30, 15, fgcolor);
     int battery_width = 30 * (float)(batteryLevel / 100.0f);
-    spi->fillRect(x + 5 + 30 - battery_width, y, battery_width, 15, fgcolor);
+    int b_color = TFT_GREEN;
+    if (batteryLevel < 40){
+      b_color = TFT_YELLOW;
+    } else if (batteryLevel < 15){
+      b_color = TFT_RED;
+    }
+    spi->fillRect(x + 5 + 30 - battery_width, y, battery_width, 15, b_color);
     if (batteryIconStatus == BatteryIconStatus::charging) {
       spi->fillTriangle(x + 20, y, x + 15, y + 8, x + 20, y + 8, bgcolor);
       spi->fillTriangle(x + 18, y + 7, x + 18, y + 15, x + 23, y + 7, bgcolor);
