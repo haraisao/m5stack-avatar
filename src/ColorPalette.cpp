@@ -30,7 +30,7 @@ uint16_t ColorPalette::get(const char* key) const {
 void ColorPalette::set(const char* key, uint16_t value) {
   auto itr = colors.find(key);
   if (itr != colors.end()) {
-    M5_LOGI("Overwriting");
+    //M5_LOGI("Overwriting");
   }
   itr->second = value;
 }
