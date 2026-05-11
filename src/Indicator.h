@@ -55,6 +55,11 @@ class Indicator final : public Drawable {
     font = ctx->getSpeechFont();
 #if 1
     text = ctx->getInfoText();
+    if(ctx->getInfoFlushing() == 0 ) {
+      setFlushing(false);
+    }else{
+      setFlushing(true);
+    }
     if (text != ""){
       drawActiveMark(spi, 0, 0, primaryColor, bgColor, -offset, this->flushing);
     }

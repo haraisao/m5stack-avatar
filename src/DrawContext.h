@@ -43,6 +43,7 @@ class DrawContext {
   const lgfx::IFont* speechFont =
       nullptr;  // = &fonts::lgfxJapanGothicP_16; //  = &fonts::efontCN_10;
   String infoText;
+  int8_t infoFlushing;
 
  public:
   DrawContext() = delete;
@@ -72,7 +73,11 @@ class DrawContext {
   ColorPalette* const getColorPalette() const;
   String getSpeechText() const;
   String getInfoText() const;
-  void setInfoText(String info) { infoText = info; }
+  int8_t getInfoFlushing() const { return infoFlushing; }
+  void setInfoText(String info, int8_t flushing=1) {
+    infoText = info;
+    infoFlushing = flushing;
+    }
   int getColorDepth() const;
   BatteryIconStatus getBatteryIconStatus() const;
   int32_t getBatteryLevel() const;

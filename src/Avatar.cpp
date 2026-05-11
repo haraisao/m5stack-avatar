@@ -205,7 +205,7 @@ void Avatar::draw() {
       this->mouthOpenRatio, this->speechText, this->rotation, this->scale,
       this->colorDepth, this->batteryIconStatus, this->batteryLevel,
       this->speechFont);
-  ctx->setInfoText(this->infoText);
+  ctx->setInfoText(this->infoText, this->infoFlushing);
   face->draw(ctx);
   delete ctx;
 }
@@ -292,10 +292,11 @@ void Avatar::setSpeechFont(const lgfx::IFont *speechFont) {
   this->speechFont = speechFont;
 }
 
-void Avatar::setInfoText(const char *infoText, uint16_t color, uint16_t bgColor) {
+void Avatar::setInfoText(const char *infoText, uint16_t color, uint16_t bgColor, int8_t flushing) {
   this->infoText = String(infoText);
   this->palette.set(COLOR_INFO_FOREGROUND, color);
   this->palette.set(COLOR_INFO_BACKGROUND, bgColor);
+  this->infoFlushing = flushing;
 }
 
 void Avatar::setBatteryIcon(bool batteryIcon) {
