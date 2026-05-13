@@ -112,6 +112,7 @@ class Avatar {
   void setInfoText(const char *infoText, uint16_t color=TFT_WHITE, uint16_t bgColor=TFT_BLACK, int8_t flushing=1);
   String getInfoText() { return infoText; }
   int8_t getInfoFlushing() { return infoFlushing; }
+  void replaceInfoText(String txt) { infoText = txt; }
   void setRotation(float radian);
   void setPosition(int top, int left);
   void setScale(float scale);
