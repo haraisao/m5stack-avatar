@@ -102,7 +102,8 @@ class Effect final : public Drawable {
         drawAngerMark(spi, 280, 50, 12, primaryColor, bgColor, offset);
         break;
       case Expression::Happy:
-        drawHeartMark(spi, 280, 50, 12, primaryColor, offset);
+        //drawHeartMark(spi, 280, 50, 12, primaryColor, offset);
+        drawHeartMark(spi, 280, 50, 12, TFT_RED, offset);
         break;
       case Expression::Sad:
         drawChillMark(spi, 270, 0, 30, primaryColor, offset);
