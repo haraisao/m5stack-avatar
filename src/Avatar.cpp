@@ -197,7 +197,7 @@ void Avatar::start(int colorDepth) {
 }
 
 void Avatar::draw() {
-  Gaze rightGaze = Gaze(this->rightGazeV_, this->rightGazeV_);
+  Gaze rightGaze = Gaze(this->rightGazeV_, this->rightGazeH_);
   Gaze leftGaze = Gaze(this->leftGazeV_, this->leftGazeH_);
   DrawContext *ctx = new DrawContext(
       this->expression, this->breath, &this->palette, rightGaze,
